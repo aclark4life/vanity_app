@@ -1,0 +1,21 @@
+           <ul id="most-downloaded" class="nav nav-list overflow-hidden">
+              <li class="nav-header">Most downloaded</li>
+              <br />
+              <ol> 
+              % for p in most_downloads:
+                <li>
+                    <% featured = "<br />Featured <span class='badge badge-info'>%s</span>" % most_downloads[p]['featured_count'] %>
+                    <form style="padding:0; margin: 0" action="/" method="POST">
+                        <span class="recent-release" data-content="${most_downloads[p]['package_summary']} ${featured|n}"
+                            data-original-title="${p}"><a 
+                            href="/package/${p}?tab=downloaded">${p}</a></span>&nbsp;<code 
+                            class="label-before">${most_downloads[p]['package_downloads']}</code>
+                        <input type="text" name="package:main" value="${p}" style="display: none;" />
+                        % if userid:
+                            <input class="btn label-before" style="padding: 0; margin: 0" type="submit" value="Feature" />
+                        % endif
+                    </form>
+              % endfor
+              </ol>
+           </ul>
+           <br />

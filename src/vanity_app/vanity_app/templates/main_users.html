@@ -1,0 +1,22 @@
+          <div class="package-entry-row row-fluid">
+              <% count = 0 %>
+              % for user in recent_users:
+              <% count += 1 %>
+              <div class="package-entry span4 well">
+                <h2><span class="label-before">${count}.</span>&nbsp;<a 
+                    href="/user/${user}">${user}</a><span
+                    class="label-after">&#58;</span>${recent_users[user]['package_count']}</h2>
+                <p>
+                    <ol>
+                    % for package in recent_users[user]['package_list']:
+                        <li><a href="/package/${package}">${package}</a>&nbsp;<code class="label-before">${recent_users[user]['package_list'][package]['featured_count']}</code></li>
+                    % endfor
+                    </ol>
+                </p>
+              </div>
+              % if count % 3 == 0:
+          </div>
+          <div class="package-entry-row row-fluid">
+              % endif
+              % endfor
+          </div>

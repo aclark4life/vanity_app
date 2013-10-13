@@ -1,0 +1,14 @@
+            <ul id="most-selected" class="nav nav-list">
+                <li class="nav-header">Most selected</li>
+                <% count = 0 %>
+                <br />
+                % for classifier in recent_troves:
+                    <% count += 1 %>
+                    <% stub = classifier.split('::')[0].strip() %>
+                    <li class="trove-classifier" style="background: ${colors[stub][1]}">
+                        <span class="classifier" style="color: ${colors[stub][0]}">
+                        ${classifier} <span style="padding: 0px; background: ${colors[stub][0]}; color: ${colors[stub][1]}" class="label num">${recent_troves[classifier]}</span>
+                        </span>
+                    </li>
+                % endfor
+            </ul>

@@ -1,0 +1,53 @@
+        </div><!--/span-->
+      </div><!--/row-->
+      <hr>
+      <footer class="footer">
+          <div class="row-fluid">
+              <div class="span3">
+                <p><a href="http://docs.pythonpackages.com/en/latest/tos.html">Terms of Service</a> &nbsp; <a href="http://docs.pythonpackages.com/en/latest/privacy.html">Privacy</a> &nbsp; <a href="/plans">Plans & Pricing</a></p>
+                <p>&copy; 2012 <a href="http://aclark.net">ACLARK.NET, LLC</a>. All rights reserved.</p>
+                <br />
+                <p>Hand-crafted by <a href="http://twitter.com/aclark4life">@aclark4life</a>.</p>
+                <p>Powered by <a href="http://pylonsproject.org">Pyramid</a> & <a href="http://redis.io">Redis</a> on <a href="http://heroku.com">Heroku</a>.</p>
+                <p>Designed by <a href="http://www.freecsstemplates.org/">CSS Templates</a> & <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>.</p>
+                <br />
+              </div>
+              <div class="overflow-hidden span4">
+                <p>${fortune}</p>
+                <br />
+              </div>
+              <div class="span4">
+                <%include file="stats.html" />
+              </div>
+          </div>
+      </footer>
+    </div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/less.js"></script>
+    <script src="/deform_static/scripts/deform.js"></script>
+    <script src="https://js.stripe.com/v1/"></script>
+    <script>
+        $('.downloads-not-applicable').popover({'placement': 'right'})
+        $('.mini-classifier-pop-up').tooltip({'placement': 'top'})
+        $('.modal-package-diagram').modal()
+        $('.modal-package-new').modal()
+        $('.modal-package-release').modal()
+        $('.modal-plan-select').modal()
+        $('.most-downloaded-pop').popover({'placement': 'right'})
+        $('.most-featured-pop').popover({'placement': 'right'})
+        $('.package-entry-title').popover({'placement': 'top'})
+        $('.package-release-error').popover({'placement': 'bottom'})
+        $('.recent-release').popover({'placement': 'right'})
+        $('.timestamp').tooltip({'placement': 'right'})
+        $('.tooltip-package-tag-and-release').tooltip({'placement': 'top'})
+        $('.tooltip-package-test-installation').tooltip({'placement': 'top'})
+        $('.tooltip-package-run-test-suite').tooltip({'placement': 'top'})
+        $('.tooltip-package-upload-to-test-index').tooltip({'placement': 'top'})
+        $('.tooltip-package-unselect-package').tooltip({'placement': 'top'})
+    </script>
+  </body>
+</html>

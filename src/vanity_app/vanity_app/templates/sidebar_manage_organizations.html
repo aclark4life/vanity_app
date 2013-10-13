@@ -1,0 +1,35 @@
+           <ul class="nav nav-list">
+              % if slotnum_org > slotnum_org_stripe:
+              <% used = slotnum_org_stripe %>
+              <% out_of = slotnum_org_stripe %>
+              % else:
+              <% used = slotnum_org %>
+              <% out_of = slotnum_org_stripe %>
+              % endif
+              <li class="nav-header">
+                <span class="badge badge-success">${used}/${out_of}</span>
+                Manage organizations
+              </li>
+              % if slotnum_org:
+                % for s in range(slotnum_org):
+                    % if s < slotnum_org_stripe:
+                        % if str(s) in slots_org.keys():
+                        <li
+                            % if slot == s:
+                                id="manage_org"
+                            % endif
+                            ><a href="/manage/github-orgs?slot=${s}"><span class="label label-info">${s + 1}</span>&nbsp;${slots_org[str(s)]}</a></li>
+                        % else:
+                        <li
+                            % if slot == s:
+                                id="manage_org"
+                            % endif
+                            ><a href="/manage/github-orgs?slot=${s}"><span class="label label-info">${s + 1}</span>&nbsp;&lt;empty slot&gt;</a></li>
+                        % endif
+                    % endif
+                % endfor
+              % endif
+              <li class="divider"></li>
+              <li><a href="/manage/github-orgs/add"><i class="icon-plus"></i>&nbsp;Add slot</a></li>
+              <li><a href="/manage/github-orgs/clear"><i class="icon-remove"></i>&nbsp;Clear slots</a></li>
+           </ul>

@@ -1,0 +1,80 @@
+            <ul class="nav nav-list">
+                <li class="nav-header">${package}</li>
+                <li class="nav-header">${summary}</li>
+                <li class="nav-header">${version}</li>
+                <br />
+                <li class="package-link">
+                    % if num_classifiers != 0:
+                    <a href="/package/${package_lower}?tab=info#classifiers"><i 
+                        class="icon-tags"></i>&nbsp;Classifiers&nbsp;<code class="label-before">${num_classifiers}</code></a>
+                    % else:
+                    <i class="icon-tags"></i>
+                    <span class="label-after">&nbsp;Classifiers&nbsp;
+                        <code class="label-before">0</code>
+                    </span>
+                    % endif
+                </li>
+                % for source in docs:
+                <li>
+                    <a href="${docs[source]}"><i class="icon-book"></i>&nbsp;Documentation&nbsp;<code class="label-before">${source}</code></a>
+                </li>
+                % endfor
+                <li>
+                % if count == 0:
+                    <a href="/package/${package}?tab=downloaded"><i
+                        class="icon-signal"></i>&nbsp;Downloaded&nbsp;<span
+                        class="label-after"><code class="label-before">N/A</code></span></a>
+                % else:
+                    <a href="/package/${package}?tab=downloaded"><i
+                        class="icon-signal"></i>&nbsp;Downloaded&nbsp;<code class="label-before">${downloads}</code></a>
+                % endif
+                </li>
+                <li>
+                    <a href="/package/${package}?tab=featured"><i
+                        class="icon-heart"></i>&nbsp;Featured&nbsp;<code class="label-before">${score}</code></a>
+                </li>
+                <li><a href="https://crate.io/packages/${package}"><i
+                    class="icon-download"></i>&nbsp;Index&nbsp;<code class="label-before">Crate</code></a>
+                    % if files is not None:
+                    <ul>
+                      <li>
+                        <a href="${files}">Download</a>
+                      </li>
+                    </ul>
+                    % endif
+                </li>
+                <li>
+                    <a href="http://pypi.python.org/pypi/${package}"><i
+                        class="icon-download"></i>&nbsp;Index&nbsp;<code class="label-before">PyPI</code></a>
+                </li>
+                <li>
+                    <a href="/package/${package}"><i class="icon-home"></i>&nbsp;Info</a>
+                </li>
+                % if not grids == []:
+                <% all_grids = '/'.join(grids[0].split('/')[:-3]) %>
+                <li>
+                    <a href="${all_grids}"><i class="icon-th-large"></i>&nbsp;Grids</a>
+                    <ul>
+                      % for grid in grids:
+                      <li>
+                        <% grid_slug = grid.split('http://')[-1] %>
+                        <% grid_slug = grid_slug.split('/')[-2] %>
+                        <% grid_slug = grid_slug.replace('-', ' ') %>
+                        <% grid_slug = grid_slug.capitalize() %>
+                        <a href="${grid}">${grid_slug}</a>
+                      </li>
+                      % endfor
+                    </ul>
+                </li>
+                % endif
+                <li>
+                    % if trash_report != []:
+                    <a href="/package/${package}?tab=quality"><i
+                        class="icon-thumbs-down"></i>&nbsp;Quality&nbsp;<span
+                        class='label-after'><code class="label-before">POOR</code></span></a>
+                    % else:
+                    <a href="/package/${package}?tab=quality"><i
+                        class="icon-thumbs-up"></i>&nbsp;Quality&nbsp;<code class="label-before">OK</code></a>
+                    % endif
+                </li>
+            </ul>

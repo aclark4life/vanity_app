@@ -1,0 +1,122 @@
+        <div class="package-entry-row row-fluid">
+            % if not userid:
+            <br />
+            <h1>Featured Packages</h1>
+            <br />
+            % endif
+            <% count = 0 %>
+            % for package in recent_entries:
+            <% count += 1 %>
+            <div class="package-entry
+                % if recent_entries[package]['python3_status']:
+                    package-entry-py3
+                % endif
+                span4 well">
+                <ul> 
+                    % if recent_entries[package]['package_classifiers'] != []:
+                    <% classifiers = recent_entries[package]['package_classifiers'] %>
+                    % for classifier in classifiers:
+                        <% stub = classifier.split('::')[0].strip() %>
+                        % if stub == 'Development Status':
+                            <% icon="icon-cog icon-white" %>
+                        % elif stub == 'Environment':
+                            <% icon="icon-globe icon-white" %>
+                        % elif stub == 'Intended Audience':
+                            <% icon="icon-user icon-white" %>
+                        % elif stub == 'License':
+                            <% icon="icon-certificate icon-white" %>
+                        % elif stub == 'Operating System':
+                            <% icon="icon-hdd icon-white" %>
+                        % elif stub == 'Programming Language':
+                            <% icon="icon-wrench icon-white" %>
+                        % elif stub == 'Topic':
+                            <% icon="icon-heart icon-white" %>
+                        % elif stub == 'Natural Language':
+                            <% icon="icon-bullhorn icon-white" %>
+                        % elif stub == 'Framework':
+                            <% icon="icon-home icon-white" %>
+                        % else:
+                            <% icon="icon-home icon-white" %>
+                        % endif
+                        <span class="badge mini-classifier-pop-up" data-original-title="${classifier}" style="background: ${colors[stub][1]}"><i class="${icon}"></i></span>
+                    % endfor
+                    % endif
+                    <h2>
+                        <span class="label-before">${count}.</span>&nbsp;<span class="package-entry-title"
+                            data-content="${recent_entries[package]['package_summary']}" rel="popover" href="#"
+                            data-original-title="${package}"><a 
+                            href="/package/${package}">${package}</a><span
+                            class="label-after">&#58;</span></span>${recent_entries[package]['package_version']}
+                    </h2>
+                    <ul>
+                    % if recent_entries[package]['package_classifiers'] != []:
+                        <li>
+                            <% classifiers = recent_entries[package]['package_classifiers'] %>
+                            <a href="/package/${package}?tab=info#classifiers">Classifiers</a>
+                            <code>${recent_entries[package]['package_classifiers_num']}</code>
+                        </li>
+                    % else:
+                        <li>
+                            <span class="label-after">
+                                Classifiers
+                                <code class="label-before">0</code>
+                            </span>
+                        </li>
+                    % endif
+                        <li>
+                            % if recent_entries[package]['package_downloads'] == '0':
+                                <a href="/package/${package}?tab=downloaded">Downloaded</a>
+                                <code class="label-before">N/A</code>
+                            % else:
+                                <a href="/package/${package}?tab=downloaded">Downloaded</a>
+                                <code>${recent_entries[package]['package_downloads']}</code>
+                            % endif
+                        </li>
+                        <li>
+                            <a href="/package/${package}?tab=featured">Featured</a>
+                            <code>${recent_entries[package]['featured_count']}</code>
+                        </li>
+                        <li>
+                            <a href="/package/${package}?tab=quality">Quality</a>
+                            % if recent_entries[package]['package_quality']:
+                            <code>OK</code>
+                            % else:
+                            <code class="label-before">POOR</code>
+                            % endif
+                        </li>
+                    </ul>
+                    <br />
+                    <form action="/" method="POST">
+                        <input class="input-xlarge" type="text" name="package:main" value="${package}" style="display: none;"/>
+                        % if userid:
+                            <input class="btn" type="submit" value="Feature it &raquo;" />
+                        % endif
+                    </form>
+                    % if recent_entries[package]['python3_status']:
+                    <hr style="color: #eef7ea; background-color: #eef7ea; -moz-border-bottom-colors: #eef7ea; -moz-border-left-colors: #eef7ea; -moz-border-right-colors: #eef7ea; -moz-border-top-colors: #eef7ea;" />
+                    % else:
+                    <hr />
+                    % endif
+                    <% timestamp = recent_entries[package]['timestamp'] %>
+                    <p>
+                    <span class="label-before">&mdash;</span>
+                    % if timestamp_msg.startswith('Released'):
+                        <span class="label-before timestamp">${timestamp_msg} ${timestamp}</span>
+                    % else:
+                        <% featured_by = recent_entries[package]['featured_by'] %>
+                        % if featured_by != 'anonymous':
+                            <span class="label-before timestamp" data-original-title="${timestamp}">${timestamp_msg} <a href="/user/${featured_by}">${featured_by}</a></span>
+                        % else:
+                            <span class="label-before timestamp" data-original-title="${timestamp}">${timestamp_msg} ${featured_by}</span>
+                        % endif
+                    % endif
+                    </p>
+                    <br />
+                </ul>
+            </div>
+        % if count % 3 == 0:
+        </div>
+        <div class="package-entry-row row-fluid">
+        % endif
+            % endfor
+        </div>

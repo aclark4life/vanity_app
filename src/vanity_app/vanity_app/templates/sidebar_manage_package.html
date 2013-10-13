@@ -1,0 +1,36 @@
+           <ul class="overflow-hidden nav nav-list">
+              % if slotnum_package > slotnum_package_stripe:
+              <% used = slotnum_package_stripe %>
+              <% out_of = slotnum_package_stripe %>
+              % else:
+              <% used = slotnum_package %>
+              <% out_of = slotnum_package_stripe %>
+              % endif
+              <li class="nav-header">
+                <span class="badge badge-success">${used}/${out_of}</span>
+                Manage packages
+              </li>
+              % if slotnum_package:
+                % for s in range(slotnum_package):
+                    % if s < slotnum_package_stripe:
+                        % if str(s) in slots_package.keys():
+                        <li
+                            % if slot == s:
+                                id="manage_package"
+                            % endif
+                            ><a href="/manage/package?slot=${s}"><span class="label label-info">${s + 1}</span>&nbsp;${slots_package[str(s)][0]}</a></li>
+                        % else:
+                        <li
+                            % if slot == s:
+                                id="manage_package"
+                            % endif
+                            ><a href="/manage/package?slot=${s}"><span class="label label-info">${s + 1}</span>&nbsp;&lt;empty slot&gt;</a></li>
+                        % endif
+                    % endif
+                % endfor
+              % endif
+              <li class="divider"></li>
+              <li id="manage_package_add"><a href="/manage/package/add"><i class="icon-plus"></i>&nbsp;Add slot</a></li>
+              <li id="manage_package_bulk"><a href="/manage/package/bulk"><i class="icon-plus"></i>&nbsp;Bulk add</a></li>
+              <li><a href="/manage/package/clear"><i class="icon-remove"></i>&nbsp;Clear slots</a></li>
+           </ul>

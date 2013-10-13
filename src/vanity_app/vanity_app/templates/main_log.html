@@ -1,0 +1,67 @@
+            <br />
+            <div class="package-entry-row row-fluid">
+            <% count = 0 %>
+            % for package in entries:
+                <% count += 1 %>
+                <div class="package-entry
+                    % if entries[package]['python3_status']:
+                        package-entry-py3
+                    % endif
+                    span4 well">
+                    <% downloaded_featured = "<br />Downloaded <span class='badge badge-info'>%s</span>&nbsp;Featured <span class='badge badge-info'>%s</span>" % (entries[package]['package_downloads'], entries[package]['featured_count']) %>
+                    <ul> 
+                    % if entries[package]['package_classifiers']:
+                    <% classifiers = entries[package]['package_classifiers'] %>
+                    % for classifier in classifiers:
+                        <% stub = classifier.split('::')[0].strip() %>
+                        % if stub == 'Development Status':
+                            <% icon="icon-cog icon-white" %>
+                        % elif stub == 'Environment':
+                            <% icon="icon-globe icon-white" %>
+                        % elif stub == 'Intended Audience':
+                            <% icon="icon-user icon-white" %>
+                        % elif stub == 'License':
+                            <% icon="icon-certificate icon-white" %>
+                        % elif stub == 'Operating System':
+                            <% icon="icon-hdd icon-white" %>
+                        % elif stub == 'Programming Language':
+                            <% icon="icon-wrench icon-white" %>
+                        % elif stub == 'Topic':
+                            <% icon="icon-heart icon-white" %>
+                        % elif stub == 'Natural Language':
+                            <% icon="icon-bullhorn icon-white" %>
+                        % elif stub == 'Framework':
+                            <% icon="icon-home icon-white" %>
+                        % else:
+                            <% icon="icon-home icon-white" %>
+                        % endif
+                        <span class="badge mini-classifier-pop-up" data-original-title="${classifier}"
+                                style="background: ${colors[stub][1]}"><i class="${icon}"></i></span>
+                    % endfor
+                    % endif
+                        <h2 class="overflow-hidden">
+                            <span class="label-before">${count}.</span>
+                            <span class="package-entry-title" data-content="${entries[package]['package_summary']}
+                            ${downloaded_featured|n}" data-original-title="${package}">
+                            <a href="/package/${package}">${package}</a><span class="label-after">&#58;</span>${entries[package]['version']}
+                        </h2>
+                        <ul>
+                        % for msg in range(len(entries[package]['messages'])):
+                            <li>${entries[package]['messages'][msg]}</li>
+                        % endfor
+                        </ul>
+                        <br />
+                        <form action="/" method="POST">
+                          <input class="input-xlarge" type="text" name="package:activity" value="${package}" style="display: none;"/>
+                          % if userid:
+                            <input class="btn" type="submit" value="Feature it &raquo;" />
+                          % endif
+                        </form>
+                    </ul>
+                </div>
+                % if count % 3 == 0:
+            </div><!-- Start a new row yo -->
+            <div class="package-entry-row row-fluid">
+                % endif
+            % endfor
+            </div>

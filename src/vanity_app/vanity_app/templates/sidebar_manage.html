@@ -1,0 +1,36 @@
+           % if permissions['manage_package']:
+           <div class="well sidebar-nav">
+                <%include file="sidebar_manage_accounts.html"/>
+           </div>
+           <br />
+           % endif
+           % if permissions['manage_package']:
+           <div class="well sidebar-nav">
+                <%include file="sidebar_manage_billing.html"/>
+           </div>
+           <br />
+           % endif
+           % if permissions['manage_package']:
+           <div class="well sidebar-nav">
+                <%include file="sidebar_manage_organizations.html"/>
+           </div>
+           <br />
+           % endif
+           % if permissions['manage_package']:
+           <div class="well sidebar-nav">
+                 <%include file="sidebar_manage_package.html"/>
+           </div>
+           <br />
+           % endif
+           % if permissions['manage_package']:
+           <div class="well sidebar-nav">
+                 <%include file="sidebar_tools.html"/>
+           </div>
+           <br />
+           % endif
+           % if permissions['manage_site']:
+           <div class="well sidebar-nav">
+                 <%include file="sidebar_manage_site.html"/>
+           </div>
+           <br />
+           % endif

@@ -1,0 +1,10 @@
+           <ul id="users" class="nav nav-list">
+              <li class="nav-header">Most active</li>
+              <br />
+              <ol> 
+              % for user in user_list:
+                  <li><a href="/user/${user}">${user}</a>&nbsp;<code class="label-before">${user_list[user]}</code></li>
+              % endfor
+              </ol>
+           </ul>
+           <br />

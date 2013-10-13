@@ -1,0 +1,25 @@
+          <div class="well sidebar-nav">
+            <ul id="recent-releases" class="nav nav-list overflow-hidden">
+               <li class="nav-header">Recent releases</li>
+               <br />
+               <ol> 
+                % for release in releases:
+                <li>
+                    <% downloaded_featured = "<br />Downloaded <span class='badge badge-info'>%s</span>&nbsp;Featured <span class='badge badge-info'>%s</span>" % (releases[release]['package_downloads'], releases[release]['featured_count']) %>
+                    <form style="padding:0; margin: 0" action="/" method="POST">
+                        <span class="recent-release" data-content="${releases[release]['package_summary']}
+                            ${downloaded_featured|n}"
+                            data-original-title="${release}"><a 
+                            href="/package/${release}">${release}</a></span>&nbsp;<code 
+                            class="label-before">${releases[release]['version']}</code>
+                        <input type="text" name="package:activity" value="${release}" style="display: none;" />
+                        % if userid:
+                            <input class="btn label-before" style="padding: 0; margin: 0" type="submit" value="Feature" />
+                        % endif
+                    </form>
+                </li>
+                % endfor
+               </ol>
+            </ul>
+            <br />
+          </div>  
