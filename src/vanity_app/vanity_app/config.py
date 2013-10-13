@@ -298,8 +298,8 @@ password:%s
 """
 # PyPI
 PYPI_URL = 'http://pypi.python.org/pypi'
-PYPI_OAUTH_CONSUMER_KEY = u'ingsssogen'
-PYPI_OAUTH_CONSUMER_SECRET = u'ratolossit'
+PYPI_OAUTH_CONSUMER_KEY = u''
+PYPI_OAUTH_CONSUMER_SECRET = u''
 PYPI_URL_OAUTH_ACCESS_TOKEN = 'https://pypi.python.org/oauth/access_token'
 PYPI_URL_OAUTH_ADD_RELEASE = 'https://pypi.python.org/oauth/add_release'
 PYPI_URL_OAUTH_AUTHORIZE = ('https://pypi.python.org/oauth/authorise'
