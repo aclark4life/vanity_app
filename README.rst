@@ -5,7 +5,7 @@ This is the source code for pythonpackages.com circa late 2011 to late 2012. It 
 
 .. image:: screenshot.png
 
-Featured at PyCon 2012 Startup Row
+PyCon 2012 Startup Row Participant
 ----------------------------------
 
 .. image:: screenshot2.png
